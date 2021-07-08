@@ -4,4 +4,4 @@ cmake_install.cmake
 CMakeFiles
 .vscode
 Makefile
-STM8_LINUX
+build

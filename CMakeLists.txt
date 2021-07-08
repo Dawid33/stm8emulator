@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-project(stm8-emulator)
+project(stm8emulator)
 include(CMakePrintHelpers)
 find_package(Curses REQUIRED)
 file(GLOB_RECURSE SOURCES "src/*.c")
-set(HEADERS "src/include")
+include_directories("src/include")
+#set(HEADERS "src/include")
 
-cmake_print_variables(${CURSES_INCLUDE_DIRS})
-
-add_executable(STM8_LINUX ${SOURCES})
-target_include_directories(STM8_LINUX PRIVATE ${HEADERS})
-target_include_directories(STM8_LINUX PRIVATE ${CURSES_INCLUDE_DIRS})
-target_link_libraries(STM8_LINUX PRIVATE ${CURSES_LIBRARIES})
+add_executable(stm8emulator ${SOURCES})
+#target_include_directories(stm8emulator PRIVATE ${HEADERS})
+target_include_directories(stm8emulator PRIVATE ${CURSES_INCLUDE_DIRS})
+target_link_libraries(stm8emulator PRIVATE ${CURSES_LIBRARIES})
