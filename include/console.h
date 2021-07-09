@@ -8,7 +8,7 @@ typedef struct ConsoleFlags {
 
 int init_console();
 void close_console();
-void print_str(char *str);
-ConsoleFlags* handle_cli_args(int argc, char **argv);
-void print_console_options(const ConsoleFlags *flags);
+ConsoleFlags* parse_cli_args(int argc, char **argv);
+void pretty_print_cli_flags(const ConsoleFlags *flags);
+void display_help();
 #endif

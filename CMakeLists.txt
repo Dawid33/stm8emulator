@@ -1,15 +1,23 @@
 cmake_minimum_required(VERSION 3.0.0)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+set($ENV{CTEST_OUTPUT_ON_FAILURE} 1)
 
-project(stm8emulator)
+project(stm8-emulator)
 include(CMakePrintHelpers)
-#find_package(Curses REQUIRED)
-file(GLOB_RECURSE SOURCES "src/*.c")
-file(GLOB_RECURSE TESTS "tests/*.c")
-include_directories("src/include")
 
-add_executable(test ${SOURCES} ${TESTS})
+# This can be done differently, but it makes the
+# cmake files easier to edit.
+# All targets need this directory.
+include_directories("include")
 
-add_executable(stm8emulator ${SOURCES})
-#target_include_directories(stm8emulator PRIVATE ${CURSES_INCLUDE_DIRS})
-#target_link_libraries(stm8emulator PRIVATE ${CURSES_LIBRARIES})
+add_library(stm8_lib
+"src/run.c"
+"src/io.c"
+"src/console.c"
+)
+
+# All targets needs to link this
+link_libraries(stm8_lib)
+add_executable(stm8emulator "src/main.c")
+enable_testing()
+include("tests/build_tests.cmake")
