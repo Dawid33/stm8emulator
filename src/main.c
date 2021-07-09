@@ -1,23 +1,23 @@
 #include <stdlib.h>
-#include <curses.h>
+#include <string.h>
+#include <stdio.h>
 #include "console.h"
+#include "io.h"
 
 void exit_main() {
-    close_console();
     exit(0);
 }
 
 int main (int argc, char **argv) {
-    //Initialisation code.
     if (atexit(exit_main) != 0) return -1; // Run function at program exit.
-
-    if (init_console() != 0){
-        close_console();
-        return -1;
-    }
-
-    ConsoleFlags* flags = parse_args(argc, argv);
+    
+    ConsoleFlags* flags = handle_cli_args(argc, argv);
     if (flags == NULL) return -1;
+    print_console_options(flags);
+    char *result;
+    if ((result = read_file(flags->elf_path)) == NULL) return -1;
+    printf("%s", result);
 
+    free(flags);
     return 0;
 }
