@@ -1,12 +1,6 @@
 #ifndef _IO_H
 #define _IO_H
-typedef struct {
-    
-} ElfHeader;
-typedef struct {
-    
-} ElfFile;
-
+#include "device.h"
 char* read_file(const char *file_path);
-ElfFile *parse_elf_file(char *file);
+Program *parse_hex_file(char *file);
 #endif

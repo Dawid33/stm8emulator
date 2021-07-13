@@ -1,7 +1,8 @@
 #include "device.h"
+#include <stdlib.h>
 #include "stdint.h"
 
-Memory *start_executable_environment(Program executable_program, enum Device device_type) {
+Memory *start_executable_environment(Program *executable_program, enum Device device_type) {
     
 }
 // Execute next instruction.

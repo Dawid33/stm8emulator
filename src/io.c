@@ -40,6 +40,6 @@ char* read_file(const char* file_path) {
     return result;
 }
 
-ElfFile *parse_elf_file(char* file) {
+Program *parse_hex_file(char* file) {
     
 }
