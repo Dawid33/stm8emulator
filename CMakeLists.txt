@@ -14,6 +14,7 @@ add_library(stm8_lib
 "src/run.c"
 "src/io.c"
 "src/console.c"
+"src/device.c"
 )
 
 # All targets needs to link this

@@ -4,6 +4,7 @@
 #include "run.h"
 #include "console.h"
 #include "io.h"
+#include "device.h"
 
 //Free these variables if they are not null on exit.
 ConsoleFlags *flags = NULL;
@@ -16,7 +17,6 @@ void exit_main() {
 int run (int argc, char **argv) {
     if (atexit(exit_main) != 0) return -1; // Run function at program exit.
     
-    // ALLOCHERE
     flags = parse_cli_args(argc, argv);
     if (flags == NULL) {
         return 0;
@@ -36,6 +36,9 @@ int run (int argc, char **argv) {
         return -1;
     }
     
+    Program program;
+    Memory *memory = start_executable_environment(program, None);
+    stop_executable_environment(memory);
 
     printf("%s", elf_file);
     return 0;
